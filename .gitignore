@@ -1,0 +1,9 @@
+# Quartus generated data
+db/
+incremental_db/
+output_files/
+greybox_tmp/
+
+# Local/editor temporary files
+*.bak
+*.tmp
