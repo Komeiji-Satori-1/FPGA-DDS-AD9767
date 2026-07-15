@@ -55,3 +55,14 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name VERILOG_FILE rtl/wavegen_top.v
+set_global_assignment -name VERILOG_FILE rtl/reset_sync.v
+set_global_assignment -name VERILOG_FILE rtl/spi_slave.v
+set_global_assignment -name VERILOG_FILE rtl/reg_file.v
+set_global_assignment -name VERILOG_FILE rtl/key_ctrl.v
+set_global_assignment -name VERILOG_FILE rtl/dds_channel.v
+set_global_assignment -name VERILOG_FILE rtl/wave_sine_lut.v
+set_global_assignment -name VERILOG_FILE rtl/wave_square.v
+set_global_assignment -name VERILOG_FILE rtl/wave_triangle.v
+set_global_assignment -name VERILOG_FILE rtl/dac_ad9767_if.v
+set_global_assignment -name MIF_FILE mem/sine14_16384.mif
