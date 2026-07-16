@@ -10,6 +10,8 @@ module spi_slave(
     output [1:0]  rd_target,
     output [4:0]  rd_addr,
     input  [31:0] rd_data,
+    output reg    rd_en,
+    output reg    rd_commit,
 
     output reg    wr_en,
     output reg [1:0]  wr_target,
@@ -25,12 +27,17 @@ module spi_slave(
     reg [31:0] data_shift_out;
 
     reg        wr_toggle_spi;
+    reg        rd_toggle_spi;
+    reg        rd_commit_toggle_spi;
+    reg        rd_pending_spi;
     reg [1:0]  wr_target_spi;
     reg [4:0]  wr_addr_spi;
     reg [31:0] wr_data_spi;
     reg        frame_error_spi;
 
     reg [2:0] wr_toggle_sync;
+    reg [2:0] rd_toggle_sync;
+    reg [2:0] rd_commit_sync;
 
     wire [7:0] cmd_next;
     wire       cmd_is_write;
@@ -51,12 +58,18 @@ module spi_slave(
             wr_addr_spi <= 5'd0;
             wr_data_spi <= 32'd0;
             frame_error_spi <= 1'b0;
+            rd_toggle_spi <= 1'b0;
+            rd_commit_toggle_spi <= 1'b0;
+            rd_pending_spi <= 1'b0;
         end else if (spi_cs_n) begin
             if (bit_count != 6'd0 && bit_count != 6'd40)
                 frame_error_spi <= 1'b1;
+            if (rd_pending_spi && bit_count == 6'd40)
+                rd_commit_toggle_spi <= !rd_commit_toggle_spi;
             bit_count <= 6'd0;
             cmd_shift <= 8'd0;
             data_shift_in <= 32'd0;
+            rd_pending_spi <= 1'b0;
         end else begin
             if (bit_count < 6'd8)
                 cmd_shift <= cmd_next;
@@ -75,6 +88,12 @@ module spi_slave(
                     wr_toggle_spi <= !wr_toggle_spi;
                 end
             end
+
+            if (bit_count == 6'd8 && !cmd_is_write)
+                rd_toggle_spi <= !rd_toggle_spi;
+
+            if (bit_count == 6'd8 && !cmd_is_write)
+                rd_pending_spi <= 1'b1;
 
             if (bit_count < 6'd40)
                 bit_count <= bit_count + 1'b1;
@@ -104,7 +123,11 @@ module spi_slave(
     always @(posedge sys_clk or negedge rst_n) begin
         if (!rst_n) begin
             wr_toggle_sync <= 3'b000;
+            rd_toggle_sync <= 3'b000;
+            rd_commit_sync <= 3'b000;
             wr_en <= 1'b0;
+            rd_en <= 1'b0;
+            rd_commit <= 1'b0;
             wr_target <= 2'd0;
             wr_addr <= 5'd0;
             wr_data <= 32'd0;
@@ -112,6 +135,12 @@ module spi_slave(
         end else begin
             wr_toggle_sync <= {wr_toggle_sync[1:0], wr_toggle_spi};
             wr_en <= wr_toggle_sync[2] ^ wr_toggle_sync[1];
+
+            rd_toggle_sync <= {rd_toggle_sync[1:0], rd_toggle_spi};
+            rd_en <= rd_toggle_sync[2] ^ rd_toggle_sync[1];
+
+            rd_commit_sync <= {rd_commit_sync[1:0], rd_commit_toggle_spi};
+            rd_commit <= rd_commit_sync[2] ^ rd_commit_sync[1];
 
             if (wr_toggle_sync[2] ^ wr_toggle_sync[1]) begin
                 wr_target <= wr_target_spi;
@@ -124,4 +153,3 @@ module spi_slave(
     end
 
 endmodule
-
