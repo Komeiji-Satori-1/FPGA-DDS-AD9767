@@ -104,3 +104,48 @@ DOC/change_log.md
 3. SPI 跨时钟域第一版采用请求 toggle 同步，后续需要仿真验证边界时序。
 4. AMP_SCALE 和 DC_OFFSET 仅预留寄存器，尚未进入波形数据路径。
 ```
+
+## 2026-07-16
+
+### 硬件手册整理与引脚电平配置检查
+
+分支：
+
+```text
+feature/rtl-dds-core
+```
+
+修改文件：
+
+```text
+DOC/hardware_manual_summary.md
+DOC/change_log.md
+wavegen.qsf
+.gitignore
+```
+
+修改原因：
+
+```text
+整理 EP4CE30 VER6.1D 硬件手册中的时钟、复位、按键、扩展口和 AD9767 连接信息；检查并保存 AD9767、SPI、CLK50M、Key、Rst_n 的引脚和 3.3-V LVTTL IO 标准配置。
+```
+
+影响范围：
+
+```text
+新增硬件手册摘要文档；更新 Quartus 引脚和 IO Standard 约束；忽略 Quartus 生成的 simulation/ 目录。
+```
+
+验证方式：
+
+```text
+已对照 DOC/引脚分配.CSV 检查 DACA_DATA[13:0]、DACB_DATA[13:0]、DACA_CLK、DACB_CLK、DACA_WRT、DACB_WRT 的引脚映射；已确认 SPI_*、CLK50M、Key、Rst_n 具备 3.3-V LVTTL IO 标准配置。
+```
+
+未解决问题：
+
+```text
+1. SPI 接线位于 J7-3 到 J7-6，需要实物接线时再次确认顺序。
+2. Rst_n 和 Key 使用用户自定义按键引脚，不按硬件摘要中的默认建议判断对错。
+3. 后续仍需查看 Quartus 编译报告中的 Bank 电压和 IO Assignment Analysis 结果。
+```

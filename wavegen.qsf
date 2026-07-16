@@ -66,3 +66,86 @@ set_global_assignment -name VERILOG_FILE rtl/wave_square.v
 set_global_assignment -name VERILOG_FILE rtl/wave_triangle.v
 set_global_assignment -name VERILOG_FILE rtl/dac_ad9767_if.v
 set_global_assignment -name MIF_FILE mem/sine14_16384.mif
+
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_A14 -to DACA_DATA[0]
+set_location_assignment PIN_B14 -to DACA_DATA[1]
+set_location_assignment PIN_E14 -to DACA_DATA[2]
+set_location_assignment PIN_F14 -to DACA_DATA[3]
+set_location_assignment PIN_G14 -to DACA_DATA[4]
+set_location_assignment PIN_A13 -to DACA_DATA[5]
+set_location_assignment PIN_B13 -to DACA_DATA[6]
+set_location_assignment PIN_C13 -to DACA_DATA[7]
+set_location_assignment PIN_D13 -to DACA_DATA[8]
+set_location_assignment PIN_E13 -to DACA_DATA[9]
+set_location_assignment PIN_F13 -to DACA_DATA[10]
+set_location_assignment PIN_G13 -to DACA_DATA[11]
+set_location_assignment PIN_E12 -to DACA_DATA[12]
+set_location_assignment PIN_E11 -to DACA_DATA[13]
+set_location_assignment PIN_F15 -to DACA_CLK
+set_location_assignment PIN_G15 -to DACA_WRT
+set_location_assignment PIN_E15 -to DACB_CLK
+set_location_assignment PIN_D15 -to DACB_WRT
+set_location_assignment PIN_C15 -to DACB_DATA[13]
+set_location_assignment PIN_B15 -to DACB_DATA[12]
+set_location_assignment PIN_A15 -to DACB_DATA[11]
+set_location_assignment PIN_D17 -to DACB_DATA[10]
+set_location_assignment PIN_C17 -to DACB_DATA[9]
+set_location_assignment PIN_B17 -to DACB_DATA[8]
+set_location_assignment PIN_A17 -to DACB_DATA[7]
+set_location_assignment PIN_B18 -to DACB_DATA[6]
+set_location_assignment PIN_A18 -to DACB_DATA[5]
+set_location_assignment PIN_D19 -to DACB_DATA[4]
+set_location_assignment PIN_C19 -to DACB_DATA[3]
+set_location_assignment PIN_B19 -to DACB_DATA[2]
+set_location_assignment PIN_A19 -to DACB_DATA[1]
+set_location_assignment PIN_B20 -to DACB_DATA[0]
+set_location_assignment PIN_D2 -to Rst_n
+set_location_assignment PIN_C1 -to Key
+set_location_assignment PIN_G1 -to CLK50M
+set_location_assignment PIN_V12 -to SPI_CS_N
+set_location_assignment PIN_T13 -to SPI_MISO
+set_location_assignment PIN_U13 -to SPI_MOSI
+set_location_assignment PIN_V13 -to SPI_SCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SPI_SCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SPI_MOSI
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SPI_MISO
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SPI_CS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Key
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_WRT
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLK50M
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_DATA[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACB_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_WRT
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DACA_DATA[7]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
